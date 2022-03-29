@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 import pymongo
 import json
-
+from bson.json_util import dumps
 
 app = Flask(__name__)
 
@@ -17,7 +17,7 @@ def view_pgs():
 
 @app.route("/")
 def hello_world():
-    #results = view_pgs()
-    #results_json = json.dumps(results, default=lambda o: '<not serializable>')
+    results = view_pgs()
+    results_list = list(results)
     #print(results)
-    return "results_json"
+    return dumps(results_list)
